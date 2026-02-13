@@ -128,8 +128,7 @@ outliers
 midwest <- midwest |>
   mutate(
     potential_outlier = if_else(county %in% pull(outliers, county),
-      "Yes","No")
-    )
+      "Yes","No"))
 midwest|>
   select(county, state, percbelowpoverty,percollege, potential_outlier )|>
   arrange(potential_outlier)
@@ -155,9 +154,29 @@ ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = potential_out
 ```{r}
 #a
 state_population <- midwest|>
-  count(poptotal)
+  group_by(state)|>
+  summarise(population = sum(poptotal)) |>
+  arrange(desc(population))
 state_population
 ```
+
+```{r}
+#b
+state_population|>
+  mutate(
+    midwest_total = sum(population),
+    prop = population / midwest_total
+  )|>
+  select(state, population, prop)|>
+  arrange(desc(prop))
+
+```
+
+`#c`
+
+Illinois has the greatest population of `11430602` with `27.2%` of the Midwest population.
+
+Wisconsin has the least population of `4891769` with `11.6%` of the Midwest population.
 
 \newpage
 
