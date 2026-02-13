@@ -129,11 +129,11 @@ midwest <- midwest |>
   mutate(
     potential_outlier = if_else(county %in% pull(outliers, county),
       "Yes","No")
-    )|>
+    )
+midwest|>
   select(county, state, percbelowpoverty,percollege, potential_outlier )|>
   arrange(potential_outlier)
 
-midwest
 
 ```
 
@@ -151,6 +151,13 @@ ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = potential_out
 \newpage
 
 ### Question 7
+
+```{r}
+#a
+state_population <- midwest|>
+  count(poptotal)
+state_population
+```
 
 \newpage
 
