@@ -83,7 +83,7 @@ midwest|>
 ### Question 5
 
 ```{r}
-midwest <- midwest |>
+midwest |>
   mutate(metro = if_else(inmetro == 1, "Yes", "No"))|>
   group_by(state)|>
   summarise(
@@ -97,6 +97,56 @@ midwest <- midwest |>
 \newpage
 
 ### Question 6
+
+```{r}
+#a
+a <- midwest|>
+  filter ((percollege<10) & (percbelowpoverty >45))|>
+  select (county,state, percbelowpoverty,percollege)
+a
+```
+
+```{r}
+#b
+b<- midwest|>
+  filter ((percollege > 40) & (percbelowpoverty <20))|>
+  select (county,state, percbelowpoverty,percollege)
+b
+```
+
+```{r}
+#c
+outliers<- midwest|>
+  filter ((percollege > 40 & percbelowpoverty <20) |(percollege<10 & percbelowpoverty >45)) |>
+  select (county,state, percbelowpoverty,percollege)|>
+  arrange(county)
+outliers
+```
+
+```{r}
+#d
+midwest <- midwest |>
+  mutate(
+    potential_outlier = if_else(county %in% pull(outliers, county),
+      "Yes","No")
+    )|>
+  select(county, state, percbelowpoverty,percollege, potential_outlier )|>
+  arrange(potential_outlier)
+
+midwest
+
+```
+
+```{r}
+#e
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = potential_outlier, shape = state )) +
+  geom_point() +
+  labs(
+    title = "Population below the Poverty Line by Population with College Degree, by percentage",
+    x = "Population with College Degree (%)",
+    y = "Population below the Poverty Line (%)",
+  )
+```
 
 \newpage
 
