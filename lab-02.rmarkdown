@@ -255,3 +255,4 @@ df |>
 The first pipeline, is similar to the last pipeline however it uses drop to stop grouping var_2 and Var_3
 
 The second pipeline adds an additional column that respresents the average var_1 for the associated var_2 and var_3 . This is different from the first because it shows all columns and rows as individual entrys and not as grouped operations
+
