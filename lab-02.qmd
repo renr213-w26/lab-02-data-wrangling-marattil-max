@@ -1,13 +1,11 @@
 ---
 title: "Lab 2 - Data wrangling"
-author: "John Q. Student"
-date: "June 24, 1497"
+author: "Kathrine Marattil"
+date: "Feb 10, 2026"
 format: 
   html: default # for speed
   pdf: default # for final output
-
 ---
-
 
 ```{r}
 #| eval: true
@@ -16,21 +14,43 @@ format:
 library(tidyverse)
 ```
 
-
 # Questions
 
 ## Part 1
 
+```{r}
+library(tidyverse)
+```
+
 ### Question 1
 
+```{r}
+midwest |>
+ count(state)|>
+  arrange(desc(n)) #arrange by number of counties
+
+```
+
+Illinois has the greatest amount of counties of 102, and Wisconsin has lowest amount of counties 72.
 
 \newpage
 
 ### Question 2
 
+```{r}
+
+
+  
+```
+
 \newpage
 
 ### Question 3
+
+```{r}
+
+```
+
 \newpage
 
 ### Question 5
@@ -51,6 +71,4 @@ library(tidyverse)
 
 ## Part 2
 
-
 ### Question 9
-
