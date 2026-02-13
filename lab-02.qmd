@@ -39,7 +39,9 @@ Illinois has the greatest amount of counties of 102, and Wisconsin has lowest am
 
 ```{r}
 
-
+midwest |>
+  count(county)|>
+  filter(n ==5)
   
 ```
 
